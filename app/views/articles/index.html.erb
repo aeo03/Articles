@@ -1,5 +1,4 @@
-<h1>Articles#index</h1>
-<p>Find me in app/views/articles/index.html.erb</p>
+<h1>Articles listing</h1>
 
 <table>
     <thead>
@@ -7,19 +6,22 @@
             <th>ID</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Action</th>
         </tr>
     </thead>
 
     <tbody>
         <% @articles.each do |article| %>
             <tr>
-                <td><%= article.id %></td>
+                <td><%= link_to article.id, show_article_path(article) %></td>
                 <td><%= article.title %></td>
                 <td><%= article.description %></td>
+                <td><%= link_to "Delete", show_article_path(article), method: :delete %></td>
             </tr>
         
         <% end %>
     </tbody>
 </table>
-
+<p>
 <%= link_to 'New Article', new_article_path %>
+</p>

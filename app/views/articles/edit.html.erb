@@ -1,4 +1,29 @@
-<h1>Articles#edit</h1>
-<p>Find me in app/views/articles/edit.html.erb</p>
-
 <h1>Update article</h1>
+
+<%= form_with(model: @article, url: update_article_path, local: true) do |f| %>
+    <p>
+        <%= f.label :title %><br />
+        <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :description %><br />
+        <%= f.text_field :description %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+
+    <p>
+        <% if @article.errors.any? %>
+        <ul>
+            <% @article.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+
+        </ul>
+        <% end %>
+    </p>
+
+<% end %>
+
+<%= link_to "Return to article listing", articles_path() %>
